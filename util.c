@@ -3,8 +3,11 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include "util.h"
+#include "db.h"
 
 #define MAX_DPATH_LEN 256
+#define MAX_INODES (64*1024)
 
 int direc_no = 0;
 int file_no = 0;
@@ -16,7 +19,6 @@ void print_info(char *dname, char *fname, unsigned long int ino) {
 void show_dir_files(char *path) {
 	DIR *dir;
 	struct dirent *ent;
-
 	dir = opendir(path);
 
 	if (dir == NULL)
